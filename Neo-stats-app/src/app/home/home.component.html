@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="home row">
+        <h3 class="text-center bg-info py-2">Asteroid - Neo Stats Application</h3>
+        <div *ngIf="error" class="alert alert-warning alert-dismissible fade show bg-danger text-white" role="alert">
+            <strong> Please Enter Valid Date.</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <form [formGroup]="pickDateForm" (ngSubmit)="getDates()"
+                    class="d-flex flex-column align-items-center bg-white px-4 py-5 mt-4 rounded-3 col-10 mx-auto">
+                    <strong>Select Dates</strong>
+                    <div class="my-4">
+                        <label>Start Date : </label>
+                        <input type="date" formControlName="startDate" name="startDate" required>
+                    </div>
+                    <div class="mb-4">
+                        <label>End Date : </label>
+                        <input type="date" formControlName="endDate" name="endDate" required>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-success" [disabled]="!pickDateForm.valid">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div *ngIf="showDetails" class="details bg-white rounded-3 col-md-8 p-3 my-4 mx-auto">
+                <h5 class="text-center bg-light">Asteroid Details</h5>
+                <h5>Fastest Asteroid</h5>
+                <p>ID : <span class="fw-semibold text-success">{{fastAstroidID}}</span></p>
+                <p>Speed : <span class="fw-semibold"><span class="text-success">{{fastSpeed}}</span> km/h</span></p>
+                <p>Min Size : <span class="fw-semibold"><span class="text-success">{{minSize}}</span> km</span></p>
+                <p>Max Size : <span class="fw-semibold"><span class="text-success">{{maxSize}}</span> km</span></p>
+                <p>Average Size : <span class="fw-semibold"><span class="text-success">{{averageSize}}</span> km</span>
+                </p>
+                <h5 class="text-center bg-light">Number of Asteroids per Day</h5>
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div *ngIf='loading' id="myModal" class="modal">
+        <div class="lds-roller">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>

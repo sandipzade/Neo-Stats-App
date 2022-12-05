@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+    font-family: 'Muli';
+    /* background-color: rgb(247, 234, 214); */
+    background: url("https://images.unsplash.com/photo-1543722530-d2c3201371e7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8dW5pdmVyc2V8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop") no-repeat center center/cover;
+}
+
+* {
+    box-sizing: border-box;
+}
