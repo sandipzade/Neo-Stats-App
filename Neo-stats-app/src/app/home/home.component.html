@@ -8,22 +8,22 @@
         <div class="row">
             <div class="col-md-4">
                 <form [formGroup]="pickDateForm" (ngSubmit)="getDates()"
-                    class="d-flex flex-column align-items-center bg-white px-4 py-5 mt-4 rounded-3 col-10 mx-auto">
+                    class="d-flex flex-column align-items-center bg-white  px-4 py-5 mt-4 rounded-3 col-10 mx-auto">
                     <strong>Select Dates</strong>
                     <div class="my-4">
                         <label>Start Date : </label>
-                        <input type="date" formControlName="startDate" name="startDate" required>
+                        <input type="date" formControlName="startDate" name="startDate" >
                     </div>
                     <div class="mb-4">
                         <label>End Date : </label>
-                        <input type="date" formControlName="endDate" name="endDate" required>
+                        <input type="date" formControlName="endDate" name="endDate" >
                     </div>
                     <div>
                         <button type="submit" class="btn btn-success" [disabled]="!pickDateForm.valid">Submit</button>
                     </div>
                 </form>
             </div>
-            <div *ngIf="showDetails" class="details bg-white rounded-3 col-md-8 p-3 my-4 mx-auto">
+            <div [class]="displayData" class="details bg-white  rounded-3 col-md-8 p-3 my-4 mx-auto">
                 <h5 class="text-center bg-light">Asteroid Details</h5>
                 <h5>Fastest Asteroid</h5>
                 <p>ID : <span class="fw-semibold text-success">{{fastAstroidID}}</span></p>
@@ -37,7 +37,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf='loading' id="myModal" class="modal">
+    <div *ngIf="loading" id="myModal" class="modal">
         <div class="lds-roller">
             <div></div>
             <div></div>

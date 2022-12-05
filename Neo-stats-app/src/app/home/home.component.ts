@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AsteroidsService } from '../service/asteroids.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Chart } from 'chart.js/auto';
 
 @Component({
@@ -16,8 +16,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void { }
 
   pickDateForm = new FormGroup({
-    startDate: new FormControl(''),
-    endDate: new FormControl(''),
+    startDate: new FormControl('', [Validators.required]),
+    endDate: new FormControl('', [Validators.required]),
   });
 
   startDates: any;
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
   keys: any;
   values: any;
   lengthArray: any = [];
-  showDetails: boolean = false;
+  displayData = "hideDetails";
   error: boolean = false;
   loading: boolean = false;
 
@@ -41,9 +41,10 @@ export class HomeComponent implements OnInit {
     this.loading = true;
     this.startDates = this.pickDateForm.value.startDate;
     this.endDates = this.pickDateForm.value.endDate;
-    this.showDetails = true;
     this._http.getAsteroids(this.startDates, this.endDates).subscribe(data => {
+      this.displayData = "showDetails";
       this.getAsteroid = data;
+
       this.asteroids = (this.getAsteroid.near_earth_objects);
       this.loading = false;
       this.entries = Object.entries(this.asteroids);
@@ -98,7 +99,8 @@ export class HomeComponent implements OnInit {
       (error) => {
         this.error = true;
         this.loading = false;
-        this.showDetails = false;
+        this.displayData = "hideDetails";
+
       });
   }
 }

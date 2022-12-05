@@ -1,3 +1,11 @@
+.hideDetails {
+    display: none;
+}
+
+.showDetails {
+    display: block;
+}
+
 .modal {
     display: flex;
     flex-direction: column;
